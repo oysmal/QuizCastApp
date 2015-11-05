@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_main" tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_centerVertical="true"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/menu_margin_left"
+        android:layout_marginRight="@dimen/menu_margin_right">
+
+        <Button
+            android:id="@+id/play_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWriting"
+            android:text="@string/play_menu_item"
+            android:background="@color/colorPrimary"
+            android:layout_marginBottom="@dimen/menu_item_margin_bottom"
+            android:onClick="onClickPlay"/>
+
+
+        <Button
+            android:id="@+id/browse_quizzes_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWriting"
+            android:text="@string/browse_quizzes_menu_item"
+            android:background="@color/colorPrimary"
+            android:layout_marginBottom="@dimen/menu_item_margin_bottom"
+            android:onClick="onClickBrowseQuizzes"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
