@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/item_quiz_id"
+    android:layout_margin="@dimen/list_item_margin"
+    android:padding="@dimen/list_item_padding"
+    android:textSize="15sp"
+    android:textAllCaps="true"
+    android:textStyle="bold"
+    android:background="@color/colorWriting"
+    android:textColor="@color/colorPrimary"
+    android:clickable="true"
+    android:focusable="false"
+    android:focusableInTouchMode="false"
+    android:text="test" />
