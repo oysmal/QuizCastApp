@@ -29,14 +29,14 @@
 
 
         <Button
-            android:id="@+id/browse_quizzes_button"
+            android:id="@+id/create_game_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorWriting"
-            android:text="@string/browse_quizzes_menu_item"
+            android:text="@string/create_game_menu_item"
             android:background="@color/colorPrimary"
             android:layout_marginBottom="@dimen/menu_item_margin_bottom"
-            android:onClick="onClickBrowseQuizzes"/>
+            android:onClick="onClickCreateGame"/>
 
     </LinearLayout>
 

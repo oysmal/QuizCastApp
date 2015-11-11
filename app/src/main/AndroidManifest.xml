@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.quistcastapp.quizcast" >
+    package="com.quizcastapp.quizcast" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -19,21 +21,40 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".BrowseQuizzesActivity"
+            android:name=".SelectQuizActivity"
+            android:label="@string/title_activity_select_quiz"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".SearchableActivity" />
+        </activity>
+        <activity
+            android:name=".SearchableActivity"
+            android:label="@string/search_for_quiz"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name=".PlayQuizMaster"
+            android:label="@string/title_activity_play_quiz_master"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".BrowseQuizzes"
             android:label="@string/title_activity_browse_quizzes"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
-
-        <activity android:name=".SearchableActivity" >
-            <intent-filter>
-                <action android:name="ANDROID.INTENT.ACTION.SEARCH" />
-            </intent-filter>
-            <meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
+        <activity
+            android:name=".LobbyActivity"
+            android:label="@string/title_activity_lobby"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
-        
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
 </manifest>
