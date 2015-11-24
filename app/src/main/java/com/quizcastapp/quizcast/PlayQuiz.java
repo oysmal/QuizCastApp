@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 
-public class PlayQuizMaster extends AppCompatActivity {
+public class PlayQuiz extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,7 +13,5 @@ public class PlayQuizMaster extends AppCompatActivity {
         setContentView(R.layout.activity_play_quiz_master);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
     }
-
 }

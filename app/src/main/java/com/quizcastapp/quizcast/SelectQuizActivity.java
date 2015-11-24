@@ -43,6 +43,7 @@ public class SelectQuizActivity extends AppCompatActivity {
     public void onClickBrowseByGenre(View v) {
         Intent intent = new Intent(this, BrowseQuizzes.class);
         startActivity(intent);
+        this.finish();
     }
 
     public void onClickSearch(View v) {

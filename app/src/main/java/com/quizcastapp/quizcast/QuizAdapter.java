@@ -2,6 +2,7 @@ package com.quizcastapp.quizcast;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,6 +79,8 @@ public class QuizAdapter extends ArrayAdapter<Quiz> {
 
     public void onClickSelectedQuizButton(int position) {
         QuizcastContext.getInstance(context).setActiveQuiz(this.data.get(position));
+        Intent intent = new Intent(this.context, SelectQuizTypeActivity.class);
+        this.context.startActivity(intent);
     }
 
     public static class QuizHolder {

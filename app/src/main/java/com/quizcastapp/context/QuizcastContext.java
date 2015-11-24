@@ -29,6 +29,7 @@ public class QuizcastContext {
 
     private Quiz quiz;
     private ArrayList<Quiz> quizzes;
+    private String nickname;
 
     // Private constructor so we need to use getInstance
     private QuizcastContext(Context context) {
@@ -191,5 +192,11 @@ public class QuizcastContext {
         this.quiz = quiz;
     }
 
+    public String getNickname() {
+        return nickname;
+    }
 
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 }

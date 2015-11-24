@@ -20,8 +20,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
-import org.json.JSONObject;
-
 import java.io.IOException;
 /**
  * Created by oysmal on 08.03.15.
@@ -45,7 +43,7 @@ public class ChromecastClass {
 
     private static ChromecastClass instance = null;
 
-    private static JSONObject defaultJsonMessage = null;
+    private static String defaultJsonMessage = null;
 
 
     protected ChromecastClass(Context context) {
@@ -63,7 +61,7 @@ public class ChromecastClass {
         return instance == null;
     }
 
-    public static ChromecastClass getInstance(Context context, JSONObject jsonMsg) {
+    public static ChromecastClass getInstance(Context context, String jsonMsg) {
         if(instance == null) {
             instance = new ChromecastClass(context);
             defaultJsonMessage = jsonMsg;
@@ -98,8 +96,8 @@ public class ChromecastClass {
     }
 
 
-    public void sendMessageToChromecast(JSONObject json) {
-        sendMessage(json.toString());
+    public void sendMessageToChromecast(String json) {
+        sendMessage(json);
     }
 
     /**

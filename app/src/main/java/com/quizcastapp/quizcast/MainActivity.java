@@ -1,7 +1,9 @@
 package com.quizcastapp.quizcast;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.multidex.MultiDex;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -11,6 +13,12 @@ import android.view.MenuItem;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(newBase);
+        MultiDex.install(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +52,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickCreateGame(View v) {
-        Intent i = new Intent(this, SelectQuizActivity.class);
-        startActivity(i);
+        Intent intent = new Intent(this, SelectQuizActivity.class);
+        startActivity(intent);
     }
 
     public void onClickPlay(View v) {
-        //Log.d(getString(R.string.LOGTAG), QuizcastContext.getInstance(this.getApplicationContext()).getQuiz());
+        Intent intent = new Intent(this, PlayQuiz.class);
+        startActivity(intent);
     }
 }

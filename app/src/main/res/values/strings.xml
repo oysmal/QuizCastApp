@@ -15,7 +15,7 @@
     <string name="LOGTAG">QUIZCAST_LOG</string>
 
 
-    <string name="quizzes_url">http://192.168.0.101:8080/quiz/</string>
+    <string name="quizzes_url">https://quizcastapp.com/quiz/</string>
     <string name="title_activity_play_quiz_master">PlayQuizMaster</string>
 
     <string name="title_activity_browse_quizzes">BrowseQuizzes</string>
@@ -30,4 +30,16 @@
     <string name="lobby_id_text">Lobby id: </string>
 
     <string name="start_quiz">Start Quiz</string>
+
+    <string name="play_quiz_enter_nickname">Enter nickname:</string>
+    <string name="play_quiz_enter_game_id">Enter game id:</string>
+    <string name="play_quiz_join_game">Join Game</string>
+    <string name="title_activity_select_quiz_type">SelectQuizTypeActivity</string>
+
+    <string name="select_quiz_type_quizmaster">Quiz Master</string>
+    <string name="title_activity_quiz_master_lobby">QuizMasterLobbyActivity</string>
+    <string name="title_activity_quiz_master_game">QuizMasterGameActivity</string>
+    <string name="next_question_quizmaster_game">Next Question</string>
+    <string name="finish_quiz_quizmaster_game">Finish</string>
+    <string name="correct_answer_label_quizmaster_game">Correct Answer:</string>
 </resources>
