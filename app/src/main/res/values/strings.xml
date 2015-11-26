@@ -22,7 +22,7 @@
 
     <string name="media_route_menu_title">Cast</string>
 
-    <string name="application_id_cast">temp</string>
+    <string name="application_id_cast">5E8452EE</string>
 
     <string name="title_activity_lobby">LobbyActivity</string>
     <string name="name_of_quiz_lobby">Quiz to play: </string>

@@ -9,6 +9,7 @@ import android.support.v7.media.MediaRouter;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
 import com.quizcastapp.quizcast.R;
 
 import com.google.android.gms.cast.ApplicationMetadata;
@@ -51,9 +52,9 @@ public class ChromecastClass {
 
         mMediaRouter = MediaRouter.getInstance(this.context);
         mMediaRouteSelector = new MediaRouteSelector.Builder()
-                .addControlCategory(CastMediaControlIntent.categoryForCast("5E8452EE"))
+                .addControlCategory(CastMediaControlIntent.categoryForCast(context.getString(R.string.application_id_cast)))
                 .build();
-        Log.d("MYLOG", "mMediaRouteSelector: " + mMediaRouteSelector.toString());
+        Log.d(context.getString(R.string.LOGTAG), "mMediaRouteSelector: " + mMediaRouteSelector.toString());
         mMediaRouterCallback = new MyMediaRouterCallback();
     }
 
@@ -61,10 +62,10 @@ public class ChromecastClass {
         return instance == null;
     }
 
-    public static ChromecastClass getInstance(Context context, String jsonMsg) {
+    public static ChromecastClass getInstance(Context context) {
         if(instance == null) {
             instance = new ChromecastClass(context);
-            defaultJsonMessage = jsonMsg;
+            defaultJsonMessage = "";
         }
         return instance;
     }
@@ -109,7 +110,7 @@ public class ChromecastClass {
 
                 @Override
                 public void onApplicationDisconnected(int errorCode) {
-                    Log.d("MYLOG", "application has stopped");
+                    Log.d(context.getString(R.string.LOGTAG), "application has stopped");
                     teardown();
                 }
 
@@ -127,7 +128,7 @@ public class ChromecastClass {
 
             mApiClient.connect();
         } catch (Exception e) {
-            Log.e("MYLOG", "Failed launchReceiver", e);
+            Log.e(context.getString(R.string.LOGTAG), "Failed launchReceiver", e);
         }
     }
 
@@ -136,7 +137,7 @@ public class ChromecastClass {
             @Override
             public void onApplicationStatusChanged() {
                 if (mApiClient != null) {
-                    Log.d("MYLOG", "onApplicationStatusChanged: "
+                    Log.d(context.getString(R.string.LOGTAG), "onApplicationStatusChanged: "
                             + Cast.CastApi.getApplicationStatus(mApiClient));
                 }
             }
@@ -144,7 +145,7 @@ public class ChromecastClass {
             @Override
             public void onVolumeChanged() {
                 if (mApiClient != null) {
-                    Log.d("MYLOG", "onVolumeChanged: " + Cast.CastApi.getVolume(mApiClient));
+                    Log.d(context.getString(R.string.LOGTAG), "onVolumeChanged: " + Cast.CastApi.getVolume(mApiClient));
                 }
             }
 
@@ -194,7 +195,7 @@ public class ChromecastClass {
             GoogleApiClient.ConnectionCallbacks {
         @Override
         public void onConnected(Bundle connectionHint) {
-            Log.d("MYLOG", "onConnected");
+            Log.d(context.getString(R.string.LOGTAG), "onConnected");
 
             if (mApiClient == null) {
                 // We got disconnected while this runnable was pending
@@ -210,7 +211,7 @@ public class ChromecastClass {
                     if ((connectionHint != null)
                             && connectionHint
                             .getBoolean(Cast.EXTRA_APP_NO_LONGER_RUNNING)) {
-                        Log.d("MYLOG", "App is no longer running");
+                        Log.d(context.getString(R.string.LOGTAG), "App is no longer running");
                         teardown();
                     } else {
                         // Re-create the custom message channel
@@ -220,7 +221,7 @@ public class ChromecastClass {
                                     mQuizCastChannel.getNamespace(),
                                     mQuizCastChannel);
                         } catch (IOException e) {
-                            Log.e("MYLOG", "Exception while creating channel", e);
+                            Log.e(context.getString(R.string.LOGTAG), "Exception while creating channel", e);
                         }
                     }
                 } else {
@@ -234,7 +235,7 @@ public class ChromecastClass {
                                         public void onResult(
                                                 Cast.ApplicationConnectionResult result) {
                                             Status status = result.getStatus();
-                                            Log.d("MYLOG",
+                                            Log.d(context.getString(R.string.LOGTAG),
                                                     "ApplicationConnectionResultCallback.onResult: statusCode "
                                                             + status.getStatusCode());
                                             if (status.isSuccess()) {
@@ -246,7 +247,7 @@ public class ChromecastClass {
                                                         .getApplicationStatus();
                                                 boolean wasLaunched = result
                                                         .getWasLaunched();
-                                                Log.d("MYLOG",
+                                                Log.d(context.getString(R.string.LOGTAG),
                                                         "application name: "
                                                                 + applicationMetadata
                                                                 .getName()
@@ -269,7 +270,7 @@ public class ChromecastClass {
                                                                             .getNamespace(),
                                                                     mQuizCastChannel);
                                                 } catch (IOException e) {
-                                                    Log.e("MYLOG",
+                                                    Log.e(context.getString(R.string.LOGTAG),
                                                             "Exception while creating channel",
                                                             e);
                                                 }
@@ -277,9 +278,9 @@ public class ChromecastClass {
                                                 // set the initial instructions
                                                 // on the receiver
                                                 //...
-                                                sendMessageToChromecast(defaultJsonMessage);
+                                               // sendMessageToChromecast(defaultJsonMessage);
                                             } else {
-                                                Log.e("MYLOG",
+                                                Log.e(context.getString(R.string.LOGTAG),
                                                         "application could not launch");
                                                 teardown();
                                             }
@@ -287,13 +288,13 @@ public class ChromecastClass {
                                     });
                 }
             } catch (Exception e) {
-                Log.e("MYLOG", "Failed to launch application", e);
+                Log.e(context.getString(R.string.LOGTAG), "Failed to launch application", e);
             }
         }
 
         @Override
         public void onConnectionSuspended(int cause) {
-            Log.d("MYLOG", "onConnectionSuspended");
+            Log.d(context.getString(R.string.LOGTAG), "onConnectionSuspended");
             mWaitingForReconnect = true;
         }
     }
@@ -306,7 +307,7 @@ public class ChromecastClass {
             GoogleApiClient.OnConnectionFailedListener {
         @Override
         public void onConnectionFailed(ConnectionResult result) {
-            Log.e("MYLOG", "onConnectionFailed ");
+            Log.e(context.getString(R.string.LOGTAG), "onConnectionFailed ");
 
             teardown();
         }
@@ -327,15 +328,16 @@ public class ChromecastClass {
                             @Override
                             public void onResult(Status result) {
                                 if (!result.isSuccess()) {
-                                    Log.e("MYLOG", "Sending message failed");
+                                    Log.e(context.getString(R.string.LOGTAG), "Sending message failed");
                                 }
                             }
                         });
             } catch (Exception e) {
-                Log.e("MYLOG", "Exception while sending message", e);
+                Log.e(context.getString(R.string.LOGTAG), "Exception while sending message", e);
             }
         } else {
-            Log.d("MYLOG", "Sent message successfully");
+            Log.d(context.getString(R.string.LOGTAG), "Sent message successfully");
+            Log.d(context.getString(R.string.LOGTAG), message);
         }
     }
 
@@ -349,7 +351,7 @@ public class ChromecastClass {
                         mQuizCastChannel = null;
                     }
                 } catch( IOException e ) {
-                    Log.e("MYLOG", "Exception while removing application " + e );
+                    Log.e(context.getString(R.string.LOGTAG), "Exception while removing application " + e );
                 }
                 mApplicationStarted = false;
             }

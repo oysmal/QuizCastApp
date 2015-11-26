@@ -30,6 +30,7 @@ public class QuizcastContext {
     private Quiz quiz;
     private ArrayList<Quiz> quizzes;
     private String nickname;
+    private String mode;
 
     // Private constructor so we need to use getInstance
     private QuizcastContext(Context context) {

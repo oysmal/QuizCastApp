@@ -10,9 +10,12 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.quizcastapp.context.ChromecastClass;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private ChromecastClass chromecast;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -26,13 +29,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        chromecast = ChromecastClass.getInstance(this);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        chromecast.onCreateOptionsMenu(menu);
         return true;
     }
 
@@ -59,5 +63,26 @@ public class MainActivity extends AppCompatActivity {
     public void onClickPlay(View v) {
         Intent intent = new Intent(this, PlayQuiz.class);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Start media router discovery
+        chromecast.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        if (isFinishing()) {
+            chromecast.onPauseIsFinishing();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        chromecast.onDestroy();
+        super.onDestroy();
     }
 }

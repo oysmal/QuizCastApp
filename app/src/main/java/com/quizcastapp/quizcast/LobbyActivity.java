@@ -7,11 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.quizcastapp.context.ChromecastClass;
 import com.quizcastapp.context.QuizcastContext;
 import com.quizcastapp.database.User;
 
@@ -21,6 +23,7 @@ public class LobbyActivity extends AppCompatActivity {
 
     private QuizcastContext quizcastContext;
     private ArrayList<User> joinedUsers;
+    private ChromecastClass chromecast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,7 @@ public class LobbyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lobby);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        chromecast.getInstance(this);
 
         quizcastContext = QuizcastContext.getInstance(this);
 
@@ -91,6 +95,36 @@ public class LobbyActivity extends AppCompatActivity {
 
     public static class UserHolder {
         public TextView nameView;
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        chromecast.onCreateOptionsMenu(menu);
+        return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Start media router discovery
+        chromecast.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        if (isFinishing()) {
+            chromecast.onPauseIsFinishing();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        chromecast.onDestroy();
+        super.onDestroy();
     }
 
 }

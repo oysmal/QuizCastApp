@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+
+import com.quizcastapp.context.ChromecastClass;
 import com.quizcastapp.context.QuizcastContext;
 import com.quizcastapp.context.ResponseHandler;
 import com.quizcastapp.database.Quiz;
@@ -21,6 +23,7 @@ public class SearchableActivity extends AppCompatActivity {
     private QuizAdapter listAdapter;
     private ListView listView;
     private QuizcastContext quizcastContext;
+    private ChromecastClass chromecast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class SearchableActivity extends AppCompatActivity {
         listView.setAdapter(listAdapter);
 
         this.quizcastContext = QuizcastContext.getInstance(this);
+        chromecast = ChromecastClass.getInstance(this);
 
         // Get the intent, verify the action and get the query
         Intent intent = getIntent();
@@ -56,13 +60,6 @@ public class SearchableActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -77,4 +74,32 @@ public class SearchableActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        chromecast.onCreateOptionsMenu(menu);
+        return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Start media router discovery
+        chromecast.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        if (isFinishing()) {
+            chromecast.onPauseIsFinishing();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        chromecast.onDestroy();
+        super.onDestroy();
+    }
 }

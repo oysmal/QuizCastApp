@@ -12,7 +12,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 
+import com.quizcastapp.context.ChromecastClass;
+
 public class SelectQuizActivity extends AppCompatActivity {
+
+    private ChromecastClass chromecast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +25,7 @@ public class SelectQuizActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        chromecast = ChromecastClass.getInstance(this);
     }
 
 
@@ -36,6 +41,7 @@ public class SelectQuizActivity extends AppCompatActivity {
         searchView.setSearchableInfo(searchManager.getSearchableInfo(new ComponentName(this, SearchableActivity.class)));
         searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
 
+        chromecast.onCreateOptionsMenu(menu);
         return true;
 
     }
@@ -50,4 +56,25 @@ public class SelectQuizActivity extends AppCompatActivity {
         onSearchRequested();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Start media router discovery
+        chromecast.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        if (isFinishing()) {
+            chromecast.onPauseIsFinishing();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        chromecast.onDestroy();
+        super.onDestroy();
+    }
 }
+
