@@ -19,7 +19,8 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +31,8 @@
         <activity
             android:name=".SelectQuizActivity"
             android:label="@string/title_activity_select_quiz"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.default_searchable"
                 android:value=".SearchableActivity" />
@@ -38,7 +40,8 @@
         <activity
             android:name=".SearchableActivity"
             android:label="@string/search_for_quiz"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -48,29 +51,20 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity
-            android:name=".PlayQuiz"
-            android:label="@string/title_activity_play_quiz_master"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".BrowseQuizzes"
             android:label="@string/title_activity_browse_quizzes"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".LobbyActivity"
-            android:label="@string/title_activity_lobby"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".SelectQuizTypeActivity"
-            android:label="@string/title_activity_select_quiz_type"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".QuizMasterLobbyActivity"
             android:label="@string/title_activity_quiz_master_lobby"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".QuizMasterGameActivity"
             android:label="@string/title_activity_quiz_master_game"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

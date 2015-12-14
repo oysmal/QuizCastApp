@@ -19,29 +19,6 @@
         android:padding="@dimen/list_item_padding"
         android:background="@color/colorPrimary"
         android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/list_item_padding">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lobby_id_text"
-                android:textAllCaps="true"
-                android:textStyle="bold"
-                android:textColor="@color/colorWriting"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAllCaps="true"
-                android:textStyle="bold"
-                android:textColor="@color/colorWriting"
-                android:text=" #000000"/>
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"

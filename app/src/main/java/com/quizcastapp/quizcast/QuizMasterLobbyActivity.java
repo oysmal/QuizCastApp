@@ -10,11 +10,13 @@ import android.widget.TextView;
 
 import com.quizcastapp.context.ChromecastClass;
 import com.quizcastapp.context.QuizcastContext;
+import com.quizcastapp.database.Quiz;
+import com.quizcastapp.database.QuizCastMessageBuilder;
 
 public class QuizMasterLobbyActivity extends AppCompatActivity {
 
     private ChromecastClass chromecast;
-
+    private Quiz quiz;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,12 +28,17 @@ public class QuizMasterLobbyActivity extends AppCompatActivity {
         view.setText(QuizcastContext.getInstance(this).getQuiz().getName());
 
         chromecast = ChromecastClass.getInstance(this);
+        quiz = QuizcastContext.getInstance(this).getQuiz();
+        chromecast.sendMessageToChromecast(QuizCastMessageBuilder.generateQuizMasterInitMessage(
+                quiz, "quizmaster"));
     }
 
     public void onClickStartGame(View v) {
+        chromecast.sendMessageToChromecast(
+                QuizCastMessageBuilder.generateQuizMasterQuestionMessage(
+                        quiz.getQuestions().get(0), 0));
         Intent intent = new Intent(this, QuizMasterGameActivity.class);
         startActivity(intent);
-        finish();
     }
 
 
@@ -56,11 +63,5 @@ public class QuizMasterLobbyActivity extends AppCompatActivity {
             chromecast.onPauseIsFinishing();
         }
         super.onPause();
-    }
-
-    @Override
-    public void onDestroy() {
-        chromecast.onDestroy();
-        super.onDestroy();
     }
 }

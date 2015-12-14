@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.quizcastapp.context.QuizcastContext;
@@ -62,8 +63,8 @@ public class QuizAdapter extends ArrayAdapter<Quiz> {
             }
         });
 
-        ImageView imgView = (ImageView) view.findViewById(R.id.set_selected_quiz_button);
-        imgView.setOnClickListener(new View.OnClickListener() {
+        LinearLayout layout = (LinearLayout) view.findViewById(R.id.quiz_item_layout_id);
+        layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(context.getString(R.string.LOGTAG), "PRESSED the select quiz button");
@@ -79,7 +80,7 @@ public class QuizAdapter extends ArrayAdapter<Quiz> {
 
     public void onClickSelectedQuizButton(int position) {
         QuizcastContext.getInstance(context).setActiveQuiz(this.data.get(position));
-        Intent intent = new Intent(this.context, SelectQuizTypeActivity.class);
+        Intent intent = new Intent(this.context, QuizMasterLobbyActivity.class);
         this.context.startActivity(intent);
     }
 

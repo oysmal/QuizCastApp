@@ -1,8 +1,10 @@
 package com.quizcastapp.quizcast;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -30,36 +32,36 @@ public class QuizMasterGameActivity extends AppCompatActivity {
 
         qc = QuizcastContext.getInstance(this);
         quiz = qc.getQuiz();
-        question_index = 0;
 
         chromecast = ChromecastClass.getInstance(this);
-        chromecast.sendMessageToChromecast(QuizCastMessageBuilder.generateQuizMasterInitMessage(quiz, "quizmaster"));
 
+        question_index = 0;
         TextView correctAnswer = (TextView) findViewById(R.id.text_view_correct_answer_quizmaster);
         correctAnswer.setText(quiz.getQuestions().get(question_index).getAnswers().get(0).getAnswer());
+        question_index++;
     }
 
     public void sendQuestionToChromecast(Question q) {
         chromecast.sendMessageToChromecast(QuizCastMessageBuilder.
-                generateQuizMasterQuestionMessage(quiz.getQuestions().get(question_index), question_index));
+                generateQuizMasterQuestionMessage(quiz.getQuestions().get(question_index), question_index));  // plus one to show correctly on cast.
     }
 
     public void onClickNextQuestion(View view) {
-        question_index++;
+        Log.d("QUIZCAST_LOG", String.valueOf(question_index));
         if(question_index == quiz.getQuestions().size()) {
-            this.finish();
-            chromecast.sendMessageToChromecast(QuizCastMessageBuilder.generateQuizMasterFinishMessage());
+            onClickFinish();
         } else {
-            if(question_index+1 == quiz.getQuestions().size()) {
+            if(question_index == quiz.getQuestions().size()-1) {
                 Button button = (Button) findViewById(R.id.button_next_question_quizmaster);
                 button.setText(getString(R.string.finish_quiz_quizmaster_game));
             }
-
             TextView correctAnswer = (TextView) findViewById(R.id.text_view_correct_answer_quizmaster);
             correctAnswer.setText(quiz.getQuestions().get(question_index).getAnswers().get(0).getAnswer());
 
             sendQuestionToChromecast(quiz.getQuestions().get(question_index));
         }
+        question_index++;
+
     }
 
 
@@ -86,10 +88,10 @@ public class QuizMasterGameActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    @Override
-    public void onDestroy() {
-        chromecast.onDestroy();
-        super.onDestroy();
+    public void onClickFinish() {
+        chromecast.sendMessageToChromecast(QuizCastMessageBuilder.generateQuizMasterFinishMessage());
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
 }

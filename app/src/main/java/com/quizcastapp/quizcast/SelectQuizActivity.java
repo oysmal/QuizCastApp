@@ -46,10 +46,9 @@ public class SelectQuizActivity extends AppCompatActivity {
 
     }
 
-    public void onClickBrowseByGenre(View v) {
+    public void onClickBrowse(View v) {
         Intent intent = new Intent(this, BrowseQuizzes.class);
         startActivity(intent);
-        this.finish();
     }
 
     public void onClickSearch(View v) {
@@ -69,12 +68,6 @@ public class SelectQuizActivity extends AppCompatActivity {
             chromecast.onPauseIsFinishing();
         }
         super.onPause();
-    }
-
-    @Override
-    public void onDestroy() {
-        chromecast.onDestroy();
-        super.onDestroy();
     }
 }
 

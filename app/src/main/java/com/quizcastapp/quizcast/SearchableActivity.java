@@ -97,9 +97,4 @@ public class SearchableActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    @Override
-    public void onDestroy() {
-        chromecast.onDestroy();
-        super.onDestroy();
-    }
 }

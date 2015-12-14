@@ -6,7 +6,7 @@
 
     <string name="title_activity_select_quiz">Select Quiz</string>
     <string name="search_for_quiz">Select Quiz</string>
-    <string name="browse_by_genre">Browse by genre</string>
+    <string name="browse">Browse</string>
     <string name="view_results">View results</string>
 
     <string name="search_hint">Search Quiz by name</string>
@@ -42,4 +42,7 @@
     <string name="next_question_quizmaster_game">Next Question</string>
     <string name="finish_quiz_quizmaster_game">Finish</string>
     <string name="correct_answer_label_quizmaster_game">Correct Answer:</string>
+
+    <string name="select_mode">Select Mode: </string>
+    <string name="select_a_quiz">Select a quiz: </string>
 </resources>

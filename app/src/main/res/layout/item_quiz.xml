@@ -12,10 +12,10 @@
     android:focusableInTouchMode="false">
     
     <LinearLayout
+        android:id="@+id/quiz_item_layout_id"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_toLeftOf="@+id/set_selected_quiz_button"
         android:clickable="false"
         android:focusable="false"
         android:focusableInTouchMode="false">
@@ -46,15 +46,6 @@
             android:focusable="false"/>
 
     </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/set_selected_quiz_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:background="@null"
-        android:src="@mipmap/ic_quizcast_approve"
-        />
 
 
 </RelativeLayout>

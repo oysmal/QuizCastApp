@@ -37,7 +37,7 @@ public class BrowseQuizzes extends AppCompatActivity {
         quizcastContext.loadAllQuizzes(new ResponseHandler() {
             @Override
             public void onSuccess(ArrayList<Quiz> quizzes) {
-                Log.d(getString(R.string.LOGTAG), "Got all quizzes lenght: " + quizzes.size());
+                Log.d(getString(R.string.LOGTAG), "Got all quizzes length: " + quizzes.size());
                 quizAdapter.addAll(quizzes);
             }
 
@@ -69,11 +69,5 @@ public class BrowseQuizzes extends AppCompatActivity {
             chromecast.onPauseIsFinishing();
         }
         super.onPause();
-    }
-
-    @Override
-    public void onDestroy() {
-        chromecast.onDestroy();
-        super.onDestroy();
     }
 }

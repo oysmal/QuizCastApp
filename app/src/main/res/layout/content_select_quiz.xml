@@ -32,10 +32,10 @@
             android:id="@+id/browse_by_genre_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/browse_by_genre"
+            android:text="@string/browse"
             android:background="@color/colorPrimary"
             android:textColor="@color/colorWriting"
-            android:onClick="onClickBrowseByGenre"
+            android:onClick="onClickBrowse"
             />
 
     </LinearLayout>

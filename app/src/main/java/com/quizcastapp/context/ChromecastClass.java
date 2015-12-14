@@ -64,6 +64,7 @@ public class ChromecastClass {
 
     public static ChromecastClass getInstance(Context context) {
         if(instance == null) {
+            Log.d(context.getString(R.string.LOGTAG), "Return new Chromecast instance");
             instance = new ChromecastClass(context);
             defaultJsonMessage = "";
         }
@@ -98,6 +99,7 @@ public class ChromecastClass {
 
 
     public void sendMessageToChromecast(String json) {
+        Log.d(context.getString(R.string.LOGTAG), json);
         sendMessage(json);
     }
 

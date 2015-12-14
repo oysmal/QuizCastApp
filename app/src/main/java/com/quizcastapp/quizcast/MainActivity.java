@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.quizcastapp.context.ChromecastClass;
+import com.quizcastapp.database.QuizCastMessageBuilder;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -56,12 +57,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickCreateGame(View v) {
+        chromecast.sendMessageToChromecast(QuizCastMessageBuilder.generateQuizMasterCreateGameMessage());
         Intent intent = new Intent(this, SelectQuizActivity.class);
-        startActivity(intent);
-    }
-
-    public void onClickPlay(View v) {
-        Intent intent = new Intent(this, PlayQuiz.class);
         startActivity(intent);
     }
 
